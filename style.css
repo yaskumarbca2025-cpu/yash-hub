@@ -477,3 +477,40 @@ footer p, footer > a:last-child {
   text-align: center;
   padding: 20px;
 }
+
+/* YASH HUB ROYAL BRANDING */
+.logo {
+  background: linear-gradient(120deg, #ffffff, #c084fc, #facc15);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+  filter: drop-shadow(0 0 9px #a855f7);
+}
+
+.logo span {
+  color: #facc15;
+  -webkit-text-fill-color: #facc15;
+}
+
+.hero {
+  background:
+    radial-gradient(ellipse at 78% 45%, #512080 0%, #1b102d 38%, #090611 75%);
+}
+
+.hero-circle {
+  border-color: #c084fc;
+  box-shadow: 0 0 25px #a855f7, 0 0 55px #facc1544,
+              inset 0 0 30px #a855f755;
+}
+
+.circle-inner {
+  background: linear-gradient(145deg, #3b1760, #090611);
+  color: #facc15;
+  font-size: 75px;
+  font-weight: 900;
+  text-shadow: 0 0 20px #a855f7;
+}
+
+.circle-inner span {
+  color: #c084fc;
+}
