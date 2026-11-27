@@ -524,3 +524,13 @@ footer p, footer > a:last-child {
   white-space: nowrap;
   line-height: 1;
 }
+
+.home-banner {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 360px;
+  object-fit: cover;
+  border-bottom: 2px solid #a855f7;
+  box-shadow: 0 5px 25px #a855f755;
+}
