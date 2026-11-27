@@ -514,3 +514,13 @@ footer p, footer > a:last-child {
 .circle-inner span {
   color: #c084fc;
 }
+
+.circle-inner .monogram {
+  display: block;
+  color: #facc15;
+  font-size: 68px;
+  font-weight: 900;
+  letter-spacing: -5px;
+  white-space: nowrap;
+  line-height: 1;
+}
