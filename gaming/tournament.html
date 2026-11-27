@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Fire Tournament | YASH HUB</title>
+<link rel="stylesheet" href="gaming.css">
+<style>
+.wrap{max-width:850px;margin:auto}
+.panel{background:#151020;border:1px solid #49305f;border-radius:14px;padding:18px;margin:18px 0}
+input,select{width:100%;padding:13px;margin:8px 0;background:#090611;color:white;border:1px solid #7541a0;border-radius:8px}
+table{width:100%;border-collapse:collapse}
+td,th{padding:12px;border-bottom:1px solid #49305f;text-align:left}
+.notice{color:#c8bfd5;font-size:13px}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>🏆 YASH HUB TOURNAMENT</h1>
+<p>Free Fire Community Tournament</p>
+<a href="free-fire.html">← Back to Free Fire</a>
+</header>
+
+<section class="panel">
+<h2>📝 Team Registration</h2>
+<form id="registerForm">
+<input id="team" placeholder="Team Name" maxlength="25" required>
+<input id="captain" placeholder="Captain Nickname" maxlength="20" required>
+<input id="p2" placeholder="Player 2 Nickname" maxlength="20" required>
+<input id="p3" placeholder="Player 3 Nickname" maxlength="20" required>
+<input id="p4" placeholder="Player 4 Nickname" maxlength="20" required>
+<button type="submit">Register Team</button>
+</form>
+<p class="notice">Demo registration saved only in this browser. Do not enter phone numbers, passwords or private account details.</p>
+<p id="message"></p>
+</section>
+
+<section class="panel">
+<h2>📅 Match Schedule</h2>
+<p>Upcoming matches will be announced here.</p>
+<p class="notice">No official match is scheduled yet.</p>
+</section>
+
+<section class="panel">
+<h2>📊 Points Table</h2>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Team</th><th>Matches</th><th>Points</th></tr></thead>
+<tbody id="points">
+<tr><td colspan="3">No match results yet.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<section class="panel">
+<h2>🥇 Registered Teams</h2>
+<div style="overflow-x:auto">
+<table>
+<thead><tr><th>Team</th><th>Captain</th><th>Players</th></tr></thead>
+<tbody id="teams">
+<tr><td colspan="3">No teams registered yet.</td></tr>
+</tbody>
+</table>
+</div>
+</section>
+
+<footer>YASH HUB | Community Fan Tournament</footer>
+</div>
+
+<script>
+const form=document.getElementById("registerForm");
+
+function getTeams(){
+ return JSON.parse(localStorage.getItem("yash_ff_teams")||"[]");
+}
+
+function renderTeams(){
+ const teams=getTeams();
+ const body=document.getElementById("teams");
+ body.textContent="";
+ if(!teams.length){
+  body.innerHTML='<tr><td colspan="3">No teams registered yet.</td></tr>';
+  return;
+ }
+ teams.forEach(t=>{
+  const tr=document.createElement("tr");
+  [t.team,t.captain,t.players.join(", ")].forEach(value=>{
+   const td=document.createElement("td");
+   td.textContent=value;
+   tr.appendChild(td);
+  });
+  body.appendChild(tr);
+ });
+}
+
+form.addEventListener("submit",function(e){
+ e.preventDefault();
+ const team=document.getElementById("team").value.trim();
+ const captain=document.getElementById("captain").value.trim();
+ const players=[
+ captain,
+ document.getElementById("p2").value.trim(),
+ document.getElementById("p3").value.trim(),
+ document.getElementById("p4").value.trim()
+ ];
+ if(!team||players.some(p=>!p)){
+  document.getElementById("message").textContent="Please fill all fields.";
+  return;
+ }
+ const teams=getTeams();
+ if(teams.some(t=>t.team.toLowerCase()===team.toLowerCase())){
+  document.getElementById("message").textContent="Team name already registered.";
+  return;
+ }
+ teams.push({team,captain,players});
+ localStorage.setItem("yash_ff_teams",JSON.stringify(teams));
+ document.getElementById("message").textContent="Team registered successfully!";
+ form.reset();
+ renderTeams();
+});
+
+renderTeams();
+</script>
+</body>
+</html>

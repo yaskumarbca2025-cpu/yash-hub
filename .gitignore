@@ -1,0 +1,7 @@
+.git/
+backup/
+*.bak
+*.empty-backup
+script.js+
+admin/index.html++++
+style.css.

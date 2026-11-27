@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YASH HUB | Tic Tac Toe</title>
+<link rel="stylesheet" href="gaming.css">
+<style>
+.game{max-width:420px;margin:50px auto;padding:25px;background:#151020;border:1px solid #7543a0;border-radius:15px;text-align:center}
+.board{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:25px 0}
+.cell{height:95px;border:1px solid #7543a0;border-radius:10px;background:#090611;color:#e879f9;font-size:38px;font-weight:bold}
+.cell:disabled{opacity:1}
+#status{color:#e879f9;margin:15px}
+</style>
+</head>
+<body>
+<header><a class="logo" href="index.html">YASH<span>HUB.</span></a><a class="back" href="index.html">← Gaming Zone</a></header>
+<main class="game">
+<h1>TIC <span style="color:#a855f7">TAC TOE</span></h1>
+<p>Player X vs Player O</p>
+<div class="board" id="board">
+<button class="cell"></button><button class="cell"></button><button class="cell"></button>
+<button class="cell"></button><button class="cell"></button><button class="cell"></button>
+<button class="cell"></button><button class="cell"></button><button class="cell"></button>
+</div>
+<p id="status">Player X's turn</p>
+<button class="btn" onclick="resetGame()">Restart Game</button>
+</main>
+<script>
+const cells=[...document.querySelectorAll(".cell")];
+const statusText=document.getElementById("status");
+let current="X",active=true,board=Array(9).fill("");
+const wins=[[0,1,2],[3,4,5],[6,7,8],[0,3,6],[1,4,7],[2,5,8],[0,4,8],[2,4,6]];
+cells.forEach((cell,i)=>cell.addEventListener("click",()=>{
+ if(!active||board[i])return;
+ board[i]=current;cell.textContent=current;
+ if(wins.some(line=>line.every(index=>board[index]===current))){
+  statusText.textContent="Player "+current+" wins! 🏆";active=false;return;
+ }
+ if(board.every(Boolean)){statusText.textContent="It's a draw!";active=false;return;}
+ current=current==="X"?"O":"X";
+ statusText.textContent="Player "+current+"'s turn";
+}));
+function resetGame(){
+ board=Array(9).fill("");current="X";active=true;
+ cells.forEach(cell=>{cell.textContent="";});
+ statusText.textContent="Player X's turn";
+}
+</script>
+</body>
+</html>

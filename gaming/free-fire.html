@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Fire India | YASH HUB</title>
+<link rel="stylesheet" href="gaming.css">
+<style>
+.ff-hero{text-align:center;padding:35px 15px;background:linear-gradient(135deg,#35104c,#10091c);border:1px solid #a855f7;border-radius:18px;margin-bottom:25px}
+.ff-hero h1{font-size:34px;color:#e879f9}
+.ff-section{margin:28px 0}
+.ff-card{background:#151020;border:1px solid #49305f;border-radius:14px;padding:18px}
+.ff-card input{width:100%;padding:12px;margin:8px 0;background:#090611;color:white;border:1px solid #7541a0;border-radius:8px}
+.ff-card button{cursor:pointer}
+.ff-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:14px}
+.ff-card h3{color:#e879f9}
+.ff-note{color:#aaa0bb;font-size:13px}
+</style>
+</head>
+<body>
+
+<div class="ff-hero">
+<h1>🔥 FREE FIRE INDIA</h1>
+<p>Welcome to the YASH HUB Gaming Community</p>
+<p>Guides • Players • Characters • Maps • Tournaments</p>
+<a href="index.html">← Gaming Zone</a>
+</div>
+
+<section class="ff-section">
+<h2>🎮 Player Profile</h2>
+<div class="ff-card">
+<input id="nickname" placeholder="Enter your gaming nickname">
+<input id="uid" placeholder="Enter your Free Fire UID">
+<input id="level" type="number" min="1" max="100" placeholder="Enter your level">
+<button onclick="saveProfile()">Save Profile</button>
+<p id="profileResult">Your profile will appear here.</p>
+<p class="ff-note">Profile stays on this device. Do not share personal information or account credentials.</p>
+</div>
+</section>
+
+<section class="ff-section">
+<h2>🎯 Sensitivity Guide</h2>
+<div class="ff-grid">
+<div class="ff-card"><h3>General</h3><p>Adjust camera movement and aim comfort in training mode.</p></div>
+<div class="ff-card"><h3>Red Dot</h3><p>Practice tracking targets and controlling your aim.</p></div>
+<div class="ff-card"><h3>2X Scope</h3><p>Test scope movement at different distances.</p></div>
+<div class="ff-card"><h3>4X Scope</h3><p>Practice steady aiming and controlled movement.</p></div>
+</div>
+</section>
+
+
+<section class="ff-section">
+<h2>🧑 Characters & Pets Gallery</h2>
+
+<input id="ffSearch" placeholder="Search characters or pets..."
+style="width:100%;padding:14px;background:#151020;color:white;border:1px solid #a855f7;border-radius:10px;margin:12px 0">
+
+<div style="display:flex;gap:10px;flex-wrap:wrap;margin-bottom:15px">
+<button onclick="filterFF('all')">All</button>
+<button onclick="filterFF('character')">Characters</button>
+<button onclick="filterFF('pet')">Pets</button>
+</div>
+
+<div class="ff-grid" id="ffGallery">
+<div class="ff-card" data-type="character"><h3>🔥 Alok</h3><p>Character guide and ability overview.</p></div>
+<div class="ff-card" data-type="character"><h3>⚡ Kelly</h3><p>Character guide and play-style overview.</p></div>
+<div class="ff-card" data-type="character"><h3>🥷 Hayato</h3><p>Character guide and ability overview.</p></div>
+<div class="ff-card" data-type="character"><h3>👁️ Moco</h3><p>Character guide and ability overview.</p></div>
+<div class="ff-card" data-type="pet"><h3>🐉 Dreki</h3><p>Pet guide and ability overview.</p></div>
+<div class="ff-card" data-type="pet"><h3>🐧 Mr. Waggor</h3><p>Pet guide and ability overview.</p></div>
+<div class="ff-card" data-type="pet"><h3>🐾 Rockie</h3><p>Pet guide and ability overview.</p></div>
+<div class="ff-card" data-type="pet"><h3>🦅 Falco</h3><p>Pet guide and ability overview.</p></div>
+</div>
+<p id="ffNoResults" style="display:none">No matching results found.</p>
+</section>
+
+<script>
+function filterFF(type) {
+ const query = document.getElementById("ffSearch").value.toLowerCase();
+ let count = 0;
+ document.querySelectorAll("#ffGallery .ff-card").forEach(card => {
+   const matchType = type === "all" || card.dataset.type === type;
+   const matchText = card.textContent.toLowerCase().includes(query);
+   card.style.display = matchType && matchText ? "" : "none";
+   if(matchType && matchText) count++;
+ });
+ document.getElementById("ffNoResults").style.display = count ? "none" : "block";
+}
+document.getElementById("ffSearch").addEventListener("input", () => filterFF("all"));
+</script>
+
+
+<section class="ff-section">
+<h2>🗺️ Maps Guide</h2>
+<div class="ff-grid">
+<div class="ff-card"><h3>Bermuda</h3><p>Explore locations, routes and different play areas.</p></div>
+<div class="ff-card"><h3>Purgatory</h3><p>Learn the map layout and movement routes.</p></div>
+<div class="ff-card"><h3>Kalahari</h3><p>Explore terrain and location layouts.</p></div>
+<div class="ff-card"><h3>Alpine</h3><p>Learn the different areas and map routes.</p></div>
+</div>
+</section>
+
+<section class="ff-section">
+<h2>🏆 Tournament Zone</h2>
+<div class="ff-card">
+<h3>YASH HUB Community Tournaments</h3>
+<p>Upcoming community match announcements will appear here.</p>
+<p class="ff-note">Informational section only. No paid entry or betting.</p>
+</div>
+</section>
+
+<section class="ff-section">
+<h2>🥇 Player Leaderboard</h2>
+<div class="ff-card">
+<p>1. YASH PLAYER — Demo</p>
+<p>2. PRO PLAYER — Demo</p>
+<p>3. INDIA PLAYER — Demo</p>
+<p class="ff-note">Sample entries, not official Free Fire rankings.</p>
+</div>
+</section>
+
+<section class="ff-section"><div class="ff-card"><h2>📰 Free Fire News & Updates</h2><p>Explore community news and game updates.</p><a href="free-fire-news.html">Open News Zone →</a></div></section>
+
+<section class="ff-section" id="sensitivityFinder">
+<h2>🎯 All Mobile Headshot Sensitivity Finder</h2>
+<div class="ff-card">
+<p>Search any mobile and select its RAM to get a recommended starting setup.</p>
+
+<input id="deviceSearch" placeholder="Search mobile e.g. OPPO A6x 5G">
+
+<select id="ramSelect">
+<option value="2">2 GB RAM</option>
+<option value="3">3 GB RAM</option>
+<option value="4">4 GB RAM</option>
+<option value="6" selected>6 GB RAM</option>
+<option value="8">8 GB RAM</option>
+<option value="12">12 GB RAM</option>
+<option value="16">16 GB RAM</option>
+<option value="24">24 GB RAM</option>
+</select>
+
+<button onclick="generateSensitivity()">FIND HEADSHOT SENSITIVITY</button>
+
+<div id="sensitivityResult" style="display:none;margin-top:20px">
+<h3 id="deviceTitle"></h3>
+<div id="sensitivityValues"></div>
+<p id="sensitivityNote" class="ff-note"></p>
+<button onclick="copySensitivity()">COPY ALL SETTINGS</button>
+</div>
+</div>
+</section>
+\n
+<section class="ff-section">
+<div class="ff-card">
+<h2>📱 All Mobile Sensitivity Database</h2>
+<p>Search your mobile model and get recommended Free Fire settings.</p>
+<a href="sensitivity-database.html">OPEN SENSITIVITY FINDER →</a>
+</div>
+</section>
+\n<footer>YASH HUB | Free Fire Community Fan Page</footer>
+
+<script>
+function saveProfile(){
+ const name=document.getElementById("nickname").value.trim();
+ const level=document.getElementById("level").value;
+ const uid=document.getElementById("uid").value.trim();
+ if(!name){alert("Enter your nickname");return}
+ if(!uid){alert("Enter your UID");return}
+ if(!level || level<1 || level>100){alert("Enter a level from 1 to 100");return}
+ localStorage.setItem("ff_profile",JSON.stringify({name,uid,level}));
+ showProfile();
+}
+function showProfile(){
+ const p=JSON.parse(localStorage.getItem("ff_profile")||"null");
+ if(p){
+ document.getElementById("nickname").value=p.name;
+ document.getElementById("level").value=p.level;
+ document.getElementById("uid").value=p.uid||"";
+ document.getElementById("profileResult").textContent="Player: "+p.name+" | UID: "+(p.uid||"Not set")+" | Level: "+p.level;
+ }
+}
+showProfile();
+</script>
+
+<script>
+let currentSensitivity = {};
+
+function generateSensitivity() {
+ const device = document.getElementById("deviceSearch").value.trim();
+ const ram = Number(document.getElementById("ramSelect").value);
+
+ if(!device) {
+   alert("Enter your mobile model first!");
+   return;
+ }
+
+ // Recommended starting values, not verified device-specific measurements.
+ let adjustment = ram <= 3 ? -10 : ram <= 4 ? -5 : ram <= 6 ? 0 : ram <= 8 ? 3 : 5;
+
+ currentSensitivity = {
+   "General": Math.min(200,190+adjustment),
+   "Red Dot": Math.min(200,185+adjustment),
+   "2X Scope": Math.min(200,180+adjustment),
+   "4X Scope": Math.min(200,170+adjustment),
+   "Sniper Scope": Math.min(200,100+adjustment),
+   "Free Look": Math.min(200,150+adjustment),
+   "Fire Button Size": 50
+ };
+
+ document.getElementById("deviceTitle").textContent =
+   device + " | " + ram + "GB RAM";
+
+ document.getElementById("sensitivityValues").innerHTML =
+   Object.entries(currentSensitivity).map(([key,value]) =>
+     `<p style="padding:9px;border-bottom:1px solid #49305f">
+     <b>${key}</b>: ${value}</p>`
+   ).join("");
+
+ document.getElementById("sensitivityNote").textContent =
+   "Recommended starting values only. These are not verified measurements for this exact phone. Test and adjust in the game's training mode.";
+
+ document.getElementById("sensitivityResult").style.display="block";
+}
+
+function copySensitivity() {
+ const device = document.getElementById("deviceSearch").value;
+ const ram = document.getElementById("ramSelect").value;
+ const text = "YASH HUB Free Fire Sensitivity\n"+device+
+ " | "+ram+"GB RAM\n"+
+ Object.entries(currentSensitivity).map(([k,v])=>k+": "+v).join("\n");
+
+ if(navigator.clipboard && navigator.clipboard.writeText) {
+   navigator.clipboard.writeText(text)
+    .then(()=>alert("Settings copied!"))
+    .catch(()=>alert("Copy unavailable. Please copy manually."));
+ } else {
+   alert("Clipboard unavailable in this browser.");
+ }
+}
+</script>
+\n</body>
+</html>

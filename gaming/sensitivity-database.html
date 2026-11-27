@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>All Mobile Sensitivity | YASH HUB</title>
+<link rel="stylesheet" href="gaming.css">
+<style>
+.wrap{max-width:850px;margin:auto}
+.panel{background:#151020;border:1px solid #49305f;border-radius:15px;padding:18px;margin:18px 0}
+input,select{width:100%;padding:13px;margin:9px 0;background:#090611;color:white;border:1px solid #7541a0;border-radius:9px}
+.result{padding:14px;margin:12px 0;background:#090611;border-radius:10px}
+.value{color:#e879f9;font-weight:bold}
+.small{font-size:13px;color:#aaa0bb}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header>
+<h1>🎯 ALL MOBILE SENSITIVITY</h1>
+<p>YASH HUB Free Fire Headshot Settings</p>
+<a href="free-fire.html">← Back to Free Fire Zone</a>
+</header>
+
+<div class="panel">
+<h2>🔍 Search Your Mobile</h2>
+<input id="search" list="phones" placeholder="Enter brand or model name">
+<datalist id="phones">
+<option value="OPPO A6x 5G">
+<option value="OPPO A78 5G">
+<option value="OPPO A79 5G">
+<option value="OPPO F27 Pro+">
+<option value="Vivo T3 5G">
+<option value="Vivo T4 5G">
+<option value="Vivo Y28 5G">
+<option value="Realme C67 5G">
+<option value="Realme Narzo 70 5G">
+<option value="Realme P1 5G">
+<option value="Samsung Galaxy M15 5G">
+<option value="Samsung Galaxy A15 5G">
+<option value="Redmi Note 13 5G">
+<option value="Redmi 13 5G">
+<option value="POCO X6 5G">
+<option value="POCO M6 Pro 5G">
+<option value="iQOO Z9 5G">
+<option value="iQOO Neo 9 Pro">
+<option value="OnePlus Nord CE 4">
+<option value="OnePlus Nord CE 4 Lite">
+<option value="Motorola G85 5G">
+<option value="Motorola Edge 50 Fusion">
+<option value="Infinix GT 20 Pro">
+<option value="Infinix Note 40 5G">
+</datalist>
+
+<select id="ram">
+<option value="2">2 GB RAM</option>
+<option value="3">3 GB RAM</option>
+<option value="4">4 GB RAM</option>
+<option value="6" selected>6 GB RAM</option>
+<option value="8">8 GB RAM</option>
+<option value="12">12 GB RAM</option>
+<option value="16">16 GB RAM</option>
+<option value="24">24 GB RAM</option>
+</select>
+
+<button onclick="findSettings()">FIND SETTINGS</button>
+</div>
+
+<div class="panel" id="output" style="display:none">
+<h2>🎮 Recommended Settings</h2>
+<h3 id="phoneTitle"></h3>
+<div id="settings"></div>
+<button onclick="copySettings()">COPY ALL SETTINGS</button>
+<p class="small" id="status"></p>
+</div>
+
+<div class="panel">
+<h3>📱 Supported Brands</h3>
+<p>OPPO • Vivo • Realme • Samsung • Redmi • POCO • iQOO • OnePlus • Motorola • Infinix • Tecno • Xiaomi</p>
+<p class="small">You can also enter a model that is not listed above.</p>
+</div>
+
+<footer>YASH HUB | Gaming Sensitivity Finder</footer>
+</div>
+
+<script>
+let currentText="";
+
+function findSettings(){
+ const phone=document.getElementById("search").value.trim();
+ const ram=Number(document.getElementById("ram").value);
+
+ if(!phone){
+  alert("Enter your mobile model!");
+  return;
+ }
+
+ // Starting recommendations, not device-tested values.
+ const adjustment=ram<=3?-10:ram<=4?-5:ram<=6?0:ram<=8?3:5;
+
+ const values={
+  "General":Math.min(200,190+adjustment),
+  "Red Dot":Math.min(200,185+adjustment),
+  "2X Scope":Math.min(200,180+adjustment),
+  "4X Scope":Math.min(200,170+adjustment),
+  "Sniper Scope":Math.min(200,100+adjustment),
+  "Free Look":Math.min(200,150+adjustment),
+  "Fire Button Size":50
+ };
+
+ document.getElementById("phoneTitle").textContent=
+  phone+" | "+ram+" GB RAM";
+
+ document.getElementById("settings").innerHTML=
+  Object.entries(values).map(([key,value])=>
+   `<div class="result">${key}: <span class="value">${value}</span></div>`
+  ).join("");
+
+ document.getElementById("status").textContent=
+  "Status: Recommended starting preset — not independently tested on this device. Adjust in training mode.";
+
+ currentText="YASH HUB SENSITIVITY\n"+phone+" | "+ram+" GB RAM\n"+
+  Object.entries(values).map(([k,v])=>k+": "+v).join("\n");
+
+ document.getElementById("output").style.display="block";
+}
+
+function copySettings(){
+ if(!currentText)return;
+ if(navigator.clipboard && navigator.clipboard.writeText){
+  navigator.clipboard.writeText(currentText)
+   .then(()=>alert("Settings copied!"))
+   .catch(()=>alert("Copy unavailable. Please copy manually."));
+ }else{
+  alert("Clipboard unavailable in this browser.");
+ }
+}
+</script>
+</body>
+</html>

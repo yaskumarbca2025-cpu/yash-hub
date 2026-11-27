@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Free Fire News | YASH HUB</title>
+<link rel="stylesheet" href="gaming.css">
+<style>
+.news-wrap{max-width:900px;margin:auto}
+.news-search{width:100%;padding:14px;background:#151020;color:white;border:1px solid #a855f7;border-radius:10px;margin:15px 0}
+.news-card{background:#151020;border:1px solid #49305f;border-radius:14px;padding:20px;margin:14px 0}
+.news-card h3{color:#e879f9}
+.tag{color:#c084fc;font-size:12px}
+.news-buttons{display:flex;gap:8px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<div class="news-wrap">
+<header>
+<h1>🔥 FREE FIRE NEWS</h1>
+<p>YASH HUB Gaming Updates</p>
+<a href="free-fire.html">← Back to Free Fire Zone</a>
+</header>
+
+<h2>Latest Community Updates</h2>
+
+<input class="news-search" id="search" placeholder="Search news and updates...">
+
+<div class="news-buttons">
+<button onclick="filterNews('all')">All</button>
+<button onclick="filterNews('game')">Game Updates</button>
+<button onclick="filterNews('event')">Events</button>
+<button onclick="filterNews('tournament')">Tournaments</button>
+</div>
+
+<div id="newsList">
+<article class="news-card" data-type="game">
+<span class="tag">GAME GUIDE</span>
+<h3>🎮 Update Watch</h3>
+<p>Check official Free Fire announcements for new versions, features and patch notes.</p>
+<a href="https://ff.garena.com/" target="_blank" rel="noopener">Official Free Fire Website</a>
+</article>
+
+<article class="news-card" data-type="event">
+<span class="tag">EVENT GUIDE</span>
+<h3>🎉 In-Game Events</h3>
+<p>Check the in-game events section for current activities and rewards.</p>
+</article>
+
+<article class="news-card" data-type="game">
+<span class="tag">CHARACTER GUIDE</span>
+<h3>🧑 Character Updates</h3>
+<p>Explore character abilities and check official announcements for changes.</p>
+<a href="free-fire.html">Explore Character Gallery</a>
+</article>
+
+<article class="news-card" data-type="tournament">
+<span class="tag">COMMUNITY</span>
+<h3>🏆 YASH HUB Tournament</h3>
+<p>Visit our community tournament page to register a team for the demo tournament.</p>
+<a href="tournament.html">Open Tournament Zone</a>
+</article>
+</div>
+
+<p id="noResults" style="display:none">No matching updates found.</p>
+<p class="tag">These are community information cards, not verified live news. Check official sources for current announcements.</p>
+
+<footer>YASH HUB | Free Fire Community</footer>
+</div>
+
+<script>
+function filterNews(type){
+ const q=document.getElementById("search").value.toLowerCase();
+ let count=0;
+ document.querySelectorAll(".news-card").forEach(card=>{
+  const matchType=type==="all"||card.dataset.type===type;
+  const matchText=card.textContent.toLowerCase().includes(q);
+  card.style.display=matchType&&matchText?"":"none";
+  if(matchType&&matchText)count++;
+ });
+ document.getElementById("noResults").style.display=count?"none":"block";
+}
+document.getElementById("search").addEventListener("input",()=>filterNews("all"));
+</script>
+</body>
+</html>

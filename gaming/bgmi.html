@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#090611">
+<title>BGMI Settings & Sensitivity | YASH HUB</title>
+<link rel="stylesheet" href="gaming.css">
+<style>
+.bgmi-wrap{max-width:1000px;margin:auto;padding:20px}
+.bgmi-hero{text-align:center;padding:45px 15px}
+.bgmi-hero .big{font-size:65px}
+.bgmi-hero h1{font-size:clamp(30px,7vw,48px);margin:12px}
+.bgmi-hero h1 span,.bgmi-wrap h2 span{color:#c084fc}
+.bgmi-wrap h2{margin:25px 0 15px}
+.setting-card{background:#151020;border:1px solid #49305f;border-radius:14px;padding:18px;margin-bottom:16px}
+.setting-card h3{margin-bottom:12px}
+.setting-table{width:100%;border-collapse:collapse}
+.setting-table td,.setting-table th{padding:11px 8px;text-align:left;border-bottom:1px solid #392746}
+.setting-table th{color:#c084fc}
+.copy-btn{background:#9333ea;color:white;border:0;border-radius:9px;padding:12px 18px;margin-top:15px;font-size:15px}
+.note{color:#b9acc8;font-size:14px;line-height:1.6}
+.layout-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+.layout-item{background:#21152e;padding:15px;border-radius:12px}
+</style>
+</head>
+<body>
+<header>
+<a href="index.html" class="logo">YASH<span>HUB.</span></a>
+<a href="index.html" class="back">← Gaming Zone</a>
+</header>
+
+<section class="bgmi-hero">
+<div class="big">🔫</div>
+<p class="tag">YASH HUB GAMING COMMUNITY</p>
+<h1>BGMI <span>SETTINGS</span></h1>
+<p>Controls • Sensitivity • Gyroscope • Graphics</p>
+</section>
+
+<main class="bgmi-wrap">
+
+<h2>🎯 CAMERA <span>SENSITIVITY</span></h2>
+<div class="setting-card">
+<p class="note">Example starting preset for camera movement. Adjust it to your comfort.</p>
+<table class="setting-table">
+<tr><th>Setting</th><th>Starter Value</th></tr>
+<tr><td>TPP No Scope</td><td>120%</td></tr>
+<tr><td>FPP No Scope</td><td>110%</td></tr>
+<tr><td>Red Dot / Holo</td><td>50%</td></tr>
+<tr><td>2x Scope</td><td>35%</td></tr>
+<tr><td>3x Scope</td><td>25%</td></tr>
+<tr><td>4x Scope</td><td>20%</td></tr>
+<tr><td>6x Scope</td><td>12%</td></tr>
+<tr><td>8x Scope</td><td>10%</td></tr>
+</table>
+</div>
+
+<h2>🔥 ADS <span>SENSITIVITY</span></h2>
+<div class="setting-card">
+<p class="note">ADS values are example starting points for recoil-control practice.</p>
+<table class="setting-table">
+<tr><th>Setting</th><th>Starter Value</th></tr>
+<tr><td>TPP No Scope</td><td>100%</td></tr>
+<tr><td>FPP No Scope</td><td>100%</td></tr>
+<tr><td>Red Dot / Holo</td><td>45%</td></tr>
+<tr><td>2x Scope</td><td>35%</td></tr>
+<tr><td>3x Scope</td><td>25%</td></tr>
+<tr><td>4x Scope</td><td>20%</td></tr>
+<tr><td>6x Scope</td><td>12%</td></tr>
+<tr><td>8x Scope</td><td>10%</td></tr>
+</table>
+</div>
+
+<h2>🌀 GYROSCOPE <span>SENSITIVITY</span></h2>
+<div class="setting-card">
+<p class="note">For players who use gyro. Try these as initial values and adjust gradually.</p>
+<table class="setting-table">
+<tr><th>Setting</th><th>Starter Value</th></tr>
+<tr><td>TPP No Scope</td><td>300%</td></tr>
+<tr><td>FPP No Scope</td><td>300%</td></tr>
+<tr><td>Red Dot / Holo</td><td>300%</td></tr>
+<tr><td>2x Scope</td><td>300%</td></tr>
+<tr><td>3x Scope</td><td>240%</td></tr>
+<tr><td>4x Scope</td><td>210%</td></tr>
+<tr><td>6x Scope</td><td>100%</td></tr>
+<tr><td>8x Scope</td><td>70%</td></tr>
+</table>
+</div>
+
+<button class="copy-btn" onclick="copySettings()">📋 Copy All Starter Settings</button>
+<p id="copyStatus" class="note" aria-live="polite"></p>
+
+<h2>🎮 CONTROL <span>LAYOUTS</span></h2>
+<div class="layout-grid">
+<div class="layout-item"><h3>2 Fingers</h3><p>Beginner-friendly. Simple movement and shooting controls.</p></div>
+<div class="layout-item"><h3>3 Fingers</h3><p>One extra finger for more flexible movement and actions.</p></div>
+<div class="layout-item"><h3>4 Fingers</h3><p>More control options. Takes practice to get comfortable.</p></div>
+</div>
+
+<h2>⚙️ GRAPHICS <span>GUIDE</span></h2>
+<div class="setting-card">
+<table class="setting-table">
+<tr><td>Graphics</td><td>Smooth (if available)</td></tr>
+<tr><td>Frame Rate</td><td>Highest stable option supported by your phone</td></tr>
+<tr><td>Auto-adjust Graphics</td><td>Enable if the game offers it and performance is unstable</td></tr>
+</table>
+</div>
+
+<h2>💡 IMPORTANT <span>TIPS</span></h2>
+<div class="setting-card">
+<ul>
+<li>These are example starter values, not verified best settings for every phone.</li>
+<li>Change one setting at a time and test in Training Ground.</li>
+<li>Gyroscope values only apply if you use gyro controls.</li>
+<li>Available frame rates and settings depend on your device and game version.</li>
+<li>Save your current settings before experimenting.</li>
+</ul>
+</div>
+
+<a class="back-link" href="index.html">← Back to Gaming Zone</a>
+</main>
+
+<footer><p>© 2026 YASH HUB Gaming Zone</p></footer>
+
+<script>
+function copySettings(){
+const text = `BGMI STARTER SETTINGS
+CAMERA: TPP 120, FPP 110, Red Dot 50, 2x 35, 3x 25, 4x 20, 6x 12, 8x 10
+ADS: TPP 100, FPP 100, Red Dot 45, 2x 35, 3x 25, 4x 20, 6x 12, 8x 10
+GYROSCOPE: TPP 300, FPP 300, Red Dot 300, 2x 300, 3x 240, 4x 210, 6x 100, 8x 70
+Note: Example starting values. Adjust for your device and comfort.`;
+navigator.clipboard.writeText(text).then(()=>{
+document.getElementById('copyStatus').textContent='Settings copied!';
+}).catch(()=>{
+document.getElementById('copyStatus').textContent='Copy not supported in this browser.';
+});
+}
+</script>
+</body>
+</html>

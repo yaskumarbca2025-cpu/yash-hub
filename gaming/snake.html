@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>YASH HUB - Snake Game</title>
+<link rel="stylesheet" href="gaming.css">
+<style>
+.game {max-width:420px;margin:25px auto;text-align:center}
+canvas {width:100%;max-width:360px;background:#090611;border:2px solid #a855f7;border-radius:12px}
+.controls {display:grid;grid-template-columns:repeat(3,65px);justify-content:center;gap:8px;margin:15px}
+.controls button {padding:15px}
+.score {font-size:20px;color:#e879f9;margin:15px}
+</style>
+</head>
+<body>
+<div class="game">
+<h1>🐍 Snake Game</h1>
+<div class="score">Score: <span id="score">0</span></div>
+<canvas id="board" width="360" height="360"></canvas>
+<p id="status">Press Start to play!</p>
+<button onclick="startGame()">START / RESTART</button>
+<div class="controls">
+<span></span><button onclick="change('up')">⬆️</button><span></span>
+<button onclick="change('left')">⬅️</button>
+<button onclick="change('down')">⬇️</button>
+<button onclick="change('right')">➡️</button>
+</div>
+<a href="index.html">← Back to Gaming Zone</a>
+</div>
+<script>
+const canvas=document.getElementById("board");
+const ctx=canvas.getContext("2d");
+const size=18;
+let snake,food,dx,dy,score,timer,running=false;
+
+function startGame(){
+clearInterval(timer);
+snake=[{x:9,y:9},{x:8,y:9},{x:7,y:9}];
+dx=1;dy=0;score=0;
+document.getElementById("score").textContent=score;
+document.getElementById("status").textContent="Game running!";
+running=true;
+newFood();
+draw();
+timer=setInterval(move,130);
+}
+function newFood(){
+food={x:Math.floor(Math.random()*20),y:Math.floor(Math.random()*20)};
+}
+function change(dir){
+if(!running)return;
+if(dir==="up"&&dy!==1){dx=0;dy=-1}
+if(dir==="down"&&dy!==-1){dx=0;dy=1}
+if(dir==="left"&&dx!==1){dx=-1;dy=0}
+if(dir==="right"&&dx!==-1){dx=1;dy=0}
+}
+function move(){
+let head={x:snake[0].x+dx,y:snake[0].y+dy};
+if(head.x<0||head.y<0||head.x>=20||head.y>=20||
+snake.some((p,i)=>i<snake.length-1&&p.x===head.x&&p.y===head.y)){
+running=false;clearInterval(timer);
+document.getElementById("status").textContent="Game Over! Score: "+score;
+return;
+}
+snake.unshift(head);
+if(head.x===food.x&&head.y===food.y){
+score+=10;
+document.getElementById("score").textContent=score;
+newFood();
+}else snake.pop();
+draw();
+}
+function draw(){
+ctx.fillStyle="#090611";
+ctx.fillRect(0,0,360,360);
+ctx.fillStyle="#e879f9";
+ctx.fillRect(food.x*size,food.y*size,size-2,size-2);
+snake.forEach((p,i)=>{
+ctx.fillStyle=i===0?"#c084fc":"#9333ea";
+ctx.fillRect(p.x*size,p.y*size,size-2,size-2);
+});
+}
+document.addEventListener("keydown",e=>{
+const keys={ArrowUp:"up",ArrowDown:"down",ArrowLeft:"left",ArrowRight:"right"};
+if(keys[e.key]){e.preventDefault();change(keys[e.key])}
+});
+</script>
+</body>
+</html>

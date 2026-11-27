@@ -1,0 +1,179 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#090611">
+  <meta name="description" content="YASH HUB - Gaming, Technology, Projects and Online Tools.">
+  <title>YASH HUB | Official Website</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="header">
+  <a href="#home" class="logo">YASH<span>HUB.</span></a>
+  <button class="menu-btn" id="menuBtn">☰</button>
+  <nav id="navbar">
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#gaming">Gaming</a>
+    <a href="#exam">Exam</a>
+    <a href="#tools">Tools</a>
+    <a href="#projects">Projects</a>
+    <a href="#contact">Contact</a>
+  </nav>
+</header>
+
+<main>
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="status">● WELCOME TO MY DIGITAL WORLD</div>
+    <h1>HELLO, I'M <span>YASH</span></h1>
+    <h2>Welcome to <span>YASH HUB</span></h2>
+    <p>Gaming • Technology • Coding • Innovation</p>
+    <div class="hero-buttons">
+      <a href="#projects" class="btn">Explore Projects</a>
+      <a href="#about" class="btn outline">About Me</a>
+    </div>
+  </div>
+  <div class="hero-circle">
+    <div class="circle-inner">Y<span>.</span></div>
+  </div>
+</section>
+
+<section class="section" id="about">
+  <div class="section-heading">
+    <p>GET TO KNOW ME</p>
+    <h2>About <span>Yash</span></h2>
+  </div>
+  <div class="about-card">
+    <div class="profile-icon">Y</div>
+    <div>
+      <h3>Yash Kumar Saini</h3>
+      <p>Welcome to my personal digital space. I am interested in coding, technology, gaming and learning new things.</p>
+      <p class="purple-text">Learning • Building • Growing</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="gaming">
+  <div class="section-heading">
+    <p>LEVEL UP</p>
+    <h2>Gaming <span>Zone</span></h2>
+  </div>
+  <div class="cards">
+    <article class="card">
+      <div class="card-icon">🎮</div>
+      <h3>Gaming</h3>
+      <p>Explore Free Fire, BGMI, Minecraft, GTA V and more games.</p>
+      <a href="gaming/index.html">Open Gaming Zone →</a>
+    </article>
+    <article class="card">
+      <div class="card-icon">🏆</div>
+      <h3>Tournaments</h3>
+      <p>Explore our gaming tournament zone and team registration demo.</p>
+      <a href="gaming/tournament.html">Open Tournaments →</a>
+    </article>
+  </div>
+</section>
+
+<section class="section" id="exam">
+  <div class="section-heading">
+    <p>TEST YOUR KNOWLEDGE</p>
+    <h2>YASH <span>EXAM</span></h2>
+  </div>
+  <div class="exam-card">
+    <h3>Quick Coding Quiz</h3>
+    <p id="question">Which language is used to create web page structure?</p>
+    <div id="answers" class="answers">
+      <button onclick="checkAnswer(this, false)">Python</button>
+      <button onclick="checkAnswer(this, true)">HTML</button>
+      <button onclick="checkAnswer(this, false)">SQL</button>
+      <button onclick="checkAnswer(this, false)">C++</button>
+    </div>
+    <p id="quizResult">Choose your answer!</p>
+    <button class="btn" id="nextQuestion" onclick="nextQuestion()">Next Question</button>
+    <p id="score">Score: 0</p>
+  </div>
+</section>
+
+<section class="section" id="tools">
+  <div class="section-heading">
+    <p>USEFUL UTILITIES</p>
+    <h2>Online <span>Tools</span></h2>
+  </div>
+  <div class="cards">
+    <div class="card tool-card">
+      <div class="card-icon">🧮</div>
+      <h3>Calculator</h3>
+      <input id="calcInput" placeholder="Example: 25+15*2">
+      <button class="btn" onclick="calculate()">Calculate</button>
+      <p id="calcResult">Result will appear here.</p>
+    </div>
+    <div class="card tool-card">
+      <div class="card-icon">📝</div>
+      <h3>Text Converter</h3>
+      <textarea id="textInput" placeholder="Enter your text"></textarea>
+      <div class="tool-buttons">
+        <button onclick="convertText('upper')">UPPERCASE</button>
+        <button onclick="convertText('lower')">lowercase</button>
+      </div>
+      <p id="textResult">Converted text appears here.</p>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="projects">
+  <div class="section-heading">
+    <p>MY WORK</p>
+    <h2>My <span>Projects</span></h2>
+  </div>
+  <div class="cards">
+    <div class="card">
+      <div class="card-icon">🌐</div>
+      <h3>YASH HUB</h3>
+      <p>My personal all-in-one website.</p>
+      <span class="project-tag">Personal Website</span>
+    </div>
+    <div class="card">
+      <div class="card-icon">💻</div>
+      <h3>Future Projects</h3>
+      <p>More coding projects coming soon.</p>
+      <span class="project-tag">Coming Soon</span>
+    </div>
+  </div>
+  <div class="cards" id="dynamicProjects"></div>
+</section>
+
+<section class="section" id="announcements">
+  <div class="section-heading">
+    <p>LATEST UPDATES</p>
+    <h2>Announcements <span>Board</span></h2>
+  </div>
+  <div class="cards" id="publicAnnouncements"></div>
+</section>
+
+<section class="section" id="contact">
+  <div class="section-heading">
+    <p>GET IN TOUCH</p>
+    <h2>Contact <span>Me</span></h2>
+  </div>
+  <div class="contact-card">
+    <h3>Let's Connect!</h3>
+    <p>Thanks for visiting YASH HUB.</p>
+    <a href="mailto:yourmail@example.com" class="btn">Email Me</a>
+    <p class="small">Replace this email with your own email address.</p>
+  </div>
+</section>
+</main>
+
+<footer>
+  <a href="#home" class="logo">YASH<span>HUB.</span></a>
+  <p>© <span id="year"></span> YASH HUB. All Rights Reserved.</p>
+  <a href="#home">Back to top ↑</a>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

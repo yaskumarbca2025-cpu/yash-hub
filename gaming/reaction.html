@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Reaction Test | YASH HUB</title>
+<link rel="stylesheet" href="gaming.css">
+<style>
+.play{max-width:600px;margin:45px auto;padding:20px;text-align:center}
+#box{margin:25px auto;min-height:220px;border-radius:18px;background:#39204e;display:flex;align-items:center;justify-content:center;padding:20px;font-size:24px;cursor:pointer;user-select:none}
+#box.wait{background:#a16207}
+#box.ready{background:#15803d}
+button{background:#9333ea;color:white;border:0;padding:13px 25px;border-radius:10px;font-size:17px}
+</style>
+</head>
+<body>
+<header><a class="logo" href="../index.html">YASH<span>HUB.</span></a><a class="back" href="index.html">← Gaming Zone</a></header>
+<main class="play">
+<h1>⚡ REACTION TEST</h1>
+<p>Press Start. Wait for green, then tap the box as quickly as possible.</p>
+<button onclick="start()">Start Test</button>
+<div id="box">Press Start to begin</div>
+<h2 id="result">Your time: --</h2>
+</main>
+<script>
+let timer=null,startTime=0,state='idle';
+const box=document.getElementById('box');
+function start(){
+ clearTimeout(timer);
+ state='wait';
+ box.className='wait';
+ box.textContent='Wait for GREEN...';
+ document.getElementById('result').textContent='Get ready!';
+ timer=setTimeout(()=>{
+  if(state!=='wait')return;
+  state='ready';
+  box.className='ready';
+  box.textContent='TAP NOW!';
+  startTime=performance.now();
+ },1500+Math.random()*3500);
+}
+box.addEventListener('click',()=>{
+ if(state==='wait'){
+  clearTimeout(timer);state='early';box.className='';box.textContent='Too early! Try again.';document.getElementById('result').textContent='Wait until green appears.';
+ }else if(state==='ready'){
+  const time=Math.round(performance.now()-startTime);
+  state='done';box.className='';box.textContent='Test complete!';document.getElementById('result').textContent='Your reaction time: '+time+' ms';
+ }
+});
+</script>
+</main>
+</body>
+</html>

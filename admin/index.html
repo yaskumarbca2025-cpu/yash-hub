@@ -1,0 +1,130 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>YASH HUB | Admin Dashboard</title>
+  <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+
+<div class="dashboard">
+
+  <aside class="sidebar">
+    <h2>YASH HUB</h2>
+    <p>ADMIN PANEL</p>
+
+    <nav>
+      <button data-section="overview" class="active">Overview</button>
+      <button data-section="projects">Projects</button>
+      <button data-section="announcements">Announcements</button>
+      <button data-section="messages">Messages</button>
+      <button data-section="settings">Settings</button>
+    </nav>
+
+    <a href="../index.html">← Back to Website</a>
+  </aside>
+
+  <main class="main">
+
+    <header class="topbar">
+      <div>
+        <h1>Admin Dashboard</h1>
+        <p>Welcome to YASH HUB management</p>
+      </div>
+      <span>ADMIN</span>
+    </header>
+
+    <section id="overview" class="section">
+      <h2>Overview</h2>
+
+      <div class="stats">
+        <div class="card">
+          <h3>Projects</h3>
+          <h2 id="projectCount">0</h2>
+        </div>
+
+        <div class="card">
+          <h3>Announcements</h3>
+          <h2 id="announcementCount">0</h2>
+        </div>
+
+        <div class="card">
+          <h3>Website</h3>
+          <h2>Active</h2>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>Quick Actions</h3>
+        <button onclick="showSection('projects')">Manage Projects</button>
+        <button onclick="showSection('announcements')">Add Announcement</button>
+      </div>
+    </section>
+
+    <section id="projects" class="section" style="display:none">
+      <h2>Manage Projects</h2>
+
+      <div class="card">
+        <h3>Add New Project</h3>
+
+        <form id="projectForm">
+          <label>Project Name</label>
+          <input id="projectName" type="text" placeholder="Enter project name" required>
+
+          <label>Project Description</label>
+          <textarea id="projectDescription" placeholder="Enter description"></textarea>
+
+          <button type="submit">Add Project</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>All Projects</h3>
+        <div id="projectList"></div>
+      </div>
+    </section>
+
+    <section id="announcements" class="section" style="display:none">
+      <h2>Announcements</h2>
+
+      <div class="card">
+        <h3>Create Announcement</h3>
+
+        <form id="announcementForm">
+          <textarea id="announcementText" placeholder="Write announcement..." required></textarea>
+          <button type="submit">Publish Announcement</button>
+        </form>
+      </div>
+
+      <div class="card">
+        <h3>All Announcements</h3>
+        <div id="announcementList"></div>
+      </div>
+    </section>
+
+    <section id="messages" class="section" style="display:none">
+      <h2>Messages</h2>
+      <div class="card">
+        <p>Messages section is not connected yet.</p>
+      </div>
+    </section>
+
+    <section id="settings" class="section" style="display:none">
+      <h2>Settings</h2>
+      <div class="card">
+        <h3>Dashboard Information</h3>
+        <p>Website: YASH HUB</p>
+        <p>Dashboard version: 1.0</p>
+        <p>Storage: Browser LocalStorage</p>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<script src="admin.js"></script>
+</body>
+</html>
++
