@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -6,15 +5,52 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>YASH HUB | Admin Dashboard</title>
   <link rel="stylesheet" href="admin.css">
+  <style>
+    [hidden] { display: none !important; }
+    .login-gate {
+      min-height: 100vh; display: grid; place-items: center;
+      padding: 20px; background: #090611;
+    }
+    .login-card {
+      width: 100%; max-width: 420px; padding: 28px;
+      border: 1px solid #6b3b91; border-radius: 16px;
+      background: #151020; color: #f8f5ff;
+    }
+    .login-card h1 { margin-bottom: 10px; }
+    .login-card input {
+      width: 100%; padding: 13px; margin: 10px 0;
+      border-radius: 8px; border: 1px solid #6b3b91;
+      background: #090611; color: white;
+    }
+    .login-card button, .logout-button {
+      padding: 12px 18px; border: 0; border-radius: 8px;
+      background: #a855f7; color: white; cursor: pointer;
+    }
+    .login-card button { width: 100%; margin-top: 10px; }
+    #loginMessage { margin-top: 12px; overflow-wrap: anywhere; }
+    .topbar { gap: 15px; }
+  </style>
 </head>
 <body>
 
-<div class="dashboard">
+<div class="login-gate" id="loginGate">
+  <div class="login-card">
+    <h1>YASH HUB</h1>
+    <p>Secure Admin Login</p>
+    <form id="loginForm">
+      <input id="loginEmail" type="email" placeholder="Admin email" autocomplete="username" required>
+      <input id="loginPassword" type="password" placeholder="Password" autocomplete="current-password" required>
+      <button type="submit" id="loginButton">Login</button>
+    </form>
+    <p id="loginMessage" role="status"></p>
+    <a href="../index.html" style="color:#e879f9">Back to Website</a>
+  </div>
+</div>
 
+<div class="dashboard" id="dashboard" hidden>
   <aside class="sidebar">
     <h2>YASH HUB</h2>
     <p>ADMIN PANEL</p>
-
     <nav>
       <button data-section="overview" class="active">Overview</button>
       <button data-section="projects">Projects</button>
@@ -22,40 +58,25 @@
       <button data-section="messages">Messages</button>
       <button data-section="settings">Settings</button>
     </nav>
-
     <a href="../index.html">← Back to Website</a>
   </aside>
 
   <main class="main">
-
     <header class="topbar">
       <div>
         <h1>Admin Dashboard</h1>
         <p>Welcome to YASH HUB management</p>
       </div>
-      <span>ADMIN</span>
+      <button class="logout-button" id="logoutButton">Logout</button>
     </header>
 
     <section id="overview" class="section">
       <h2>Overview</h2>
-
       <div class="stats">
-        <div class="card">
-          <h3>Projects</h3>
-          <h2 id="projectCount">0</h2>
-        </div>
-
-        <div class="card">
-          <h3>Announcements</h3>
-          <h2 id="announcementCount">0</h2>
-        </div>
-
-        <div class="card">
-          <h3>Website</h3>
-          <h2>Active</h2>
-        </div>
+        <div class="card"><h3>Projects</h3><h2 id="projectCount">0</h2></div>
+        <div class="card"><h3>Announcements</h3><h2 id="announcementCount">0</h2></div>
+        <div class="card"><h3>Website</h3><h2>Active</h2></div>
       </div>
-
       <div class="card">
         <h3>Quick Actions</h3>
         <button onclick="showSection('projects')">Manage Projects</button>
@@ -65,50 +86,34 @@
 
     <section id="projects" class="section" style="display:none">
       <h2>Manage Projects</h2>
-
       <div class="card">
         <h3>Add New Project</h3>
-
         <form id="projectForm">
           <label>Project Name</label>
           <input id="projectName" type="text" placeholder="Enter project name" required>
-
           <label>Project Description</label>
           <textarea id="projectDescription" placeholder="Enter description"></textarea>
-
           <button type="submit">Add Project</button>
         </form>
       </div>
-
-      <div class="card">
-        <h3>All Projects</h3>
-        <div id="projectList"></div>
-      </div>
+      <div class="card"><h3>All Projects</h3><div id="projectList"></div></div>
     </section>
 
     <section id="announcements" class="section" style="display:none">
       <h2>Announcements</h2>
-
       <div class="card">
         <h3>Create Announcement</h3>
-
         <form id="announcementForm">
           <textarea id="announcementText" placeholder="Write announcement..." required></textarea>
           <button type="submit">Publish Announcement</button>
         </form>
       </div>
-
-      <div class="card">
-        <h3>All Announcements</h3>
-        <div id="announcementList"></div>
-      </div>
+      <div class="card"><h3>All Announcements</h3><div id="announcementList"></div></div>
     </section>
 
     <section id="messages" class="section" style="display:none">
       <h2>Messages</h2>
-      <div class="card">
-        <p>Messages section is not connected yet.</p>
-      </div>
+      <div class="card"><p>Messages section is not connected yet.</p></div>
     </section>
 
     <section id="settings" class="section" style="display:none">
@@ -116,15 +121,15 @@
       <div class="card">
         <h3>Dashboard Information</h3>
         <p>Website: YASH HUB</p>
-        <p>Dashboard version: 1.0</p>
-        <p>Storage: Browser LocalStorage</p>
+        <p>Dashboard version: 2.0</p>
+        <p>Storage: Supabase Online Database</p>
       </div>
     </section>
-
   </main>
 </div>
 
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="../supabase-config.js"></script>
 <script src="admin.js"></script>
 </body>
 </html>
-+
