@@ -174,66 +174,69 @@ function nextQuestion() {
 showQuestion();
 
 // YASH HUB: Admin Dashboard Data Sync
-function renderAdminContent() {
+
+async function renderAdminContent() {
   const projectsBox = document.getElementById("dynamicProjects");
   const announcementsBox = document.getElementById("publicAnnouncements");
 
-  let projects = [];
-  let announcements = [];
-
-  try {
-    projects = JSON.parse(localStorage.getItem("yash_projects")) || [];
-    announcements = JSON.parse(localStorage.getItem("yash_announcements")) || [];
-  } catch (error) {
-    console.error("Unable to load admin data:", error);
+  if (!window.supabaseClient) {
+    console.error("Supabase client not configured.");
+    return;
   }
 
   if (projectsBox) {
-    projectsBox.innerHTML = projects.map(project => {
-      const card = document.createElement("article");
-      card.className = "card";
+    const { data, error } = await window.supabaseClient
+      .from("yash_projects")
+      .select("id, name, description")
+      .eq("is_published", true)
+      .order("created_at", { ascending: false });
 
-      const heading = document.createElement("h3");
-      heading.textContent = project.name || "Untitled Project";
+    projectsBox.replaceChildren();
 
-      const description = document.createElement("p");
-      description.textContent = project.description || "";
-
-      const tag = document.createElement("span");
-      tag.className = "project-tag";
-      tag.textContent = "Admin Project";
-
-      card.append(heading, description, tag);
-      return card;
-    }).reduce((html, card) => html + card.outerHTML, "");
-
-    if (!projects.length) {
-      projectsBox.innerHTML = '<p>No additional projects added yet.</p>';
+    if (error || !data || data.length === 0) {
+      projectsBox.textContent = "No projects available yet.";
+    } else {
+      data.forEach(project => {
+        const card = document.createElement("article");
+        card.className = "card";
+        const heading = document.createElement("h3");
+        heading.textContent = project.name || "Untitled Project";
+        const description = document.createElement("p");
+        description.textContent = project.description || "";
+        const tag = document.createElement("span");
+        tag.className = "project-tag";
+        tag.textContent = "Admin Project";
+        card.append(heading, description, tag);
+        projectsBox.appendChild(card);
+      });
     }
   }
 
   if (announcementsBox) {
-    announcementsBox.innerHTML = "";
+    const { data, error } = await window.supabaseClient
+      .from("yash_announcements")
+      .select("id, message")
+      .eq("is_published", true)
+      .order("created_at", { ascending: false });
 
-    announcements.forEach(message => {
-      const card = document.createElement("article");
-      card.className = "card";
+    announcementsBox.replaceChildren();
 
-      const heading = document.createElement("h3");
-      heading.textContent = "📢 Announcement";
-
-      const paragraph = document.createElement("p");
-      paragraph.textContent = message;
-
-      card.append(heading, paragraph);
-      announcementsBox.appendChild(card);
-    });
-
-    if (!announcements.length) {
-      announcementsBox.innerHTML = '<p>No announcements yet.</p>';
+    if (error || !data || data.length === 0) {
+      announcementsBox.textContent = "No announcements yet.";
+    } else {
+      data.forEach(item => {
+        const card = document.createElement("article");
+        card.className = "card";
+        const heading = document.createElement("h3");
+        heading.textContent = "📢 Announcement";
+        const paragraph = document.createElement("p");
+        paragraph.textContent = item.message;
+        card.append(heading, paragraph);
+        announcementsBox.appendChild(card);
+      });
     }
   }
 }
 
 document.addEventListener("DOMContentLoaded", renderAdminContent);
-window.addEventListener("storage", renderAdminContent);
+
